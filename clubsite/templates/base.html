@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>{% block title %}Greenfield Sports Club{% endblock %}</title><script src="https://cdn.tailwindcss.com"></script><link href="https://cdn.jsdelivr.net/npm/flowbite@1.7.0/dist/flowbite.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900"><header class="bg-blue-800 text-white p-4"><h1 class="text-xl font-bold"><a href="/" class="hover:underline">Greenfield Sports Club</a></h1></header>
+
+    <main class="container mx-auto py-8">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-gray-200 text-center text-sm p-4 mt-8">&copy; Greenfield Sports Club. All rights reserved.
+    </footer>
+</body>
+</html>
