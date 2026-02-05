@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Players – Greenfield Sports Club{% endblock %}
+
+{% block content %}
+    <h2 class="text-3xl font-bold mb-6">Our Players</h2>
+
+    <ul class="space-y-2">
+        {% for player in players %}
+            <li class="p-4 bg-white rounded shadow">
+                 <a href="{% url 'player_detail' slug=player.slug %}" class="text-blue-800 hover:underline">
+                {{ player.first_name }} {{ player.last_name }}
+                 </a>
+                {% if player.position %} – {{ player.position }}{% endif %}
+                {% if player.number %} (#{{ player.number }}){% endif %}
+                <br>
+                Team: {{ player.team.name }}
+            </li>
+        {% empty %}
+            <li>No players found.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

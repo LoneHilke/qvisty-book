@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>{% block title %}Greenfield Sports Club{% endblock %}</title><script src="https://cdn.tailwindcss.com"></script><link href="https://cdn.jsdelivr.net/npm/flowbite@1.7.0/dist/flowbite.min.css" rel="stylesheet">
+<head><meta charset="UTF-8">
+<title>{% block title %}Greenfield Sports Club{% endblock %}</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdn.jsdelivr.net/npm/flowbite@1.7.0/dist/flowbite.min.css" rel="stylesheet">
 </head>
-<body class="bg-gray-100 text-gray-900"><header class="bg-blue-800 text-white p-4"><h1 class="text-xl font-bold"><a href="/" class="hover:underline">Greenfield Sports Club</a></h1></header>
+<body class="bg-gray-100 text-gray-900">
+<header class="bg-blue-800 text-white p-4"><h1 class="text-xl font-bold"><a href="/" class="hover:underline">Greenfield Sports Club</a></h1>
+<nav class="mt-4">
+    <a href="/" class="mr-4 hover:underline">Home</a>
+    <a href="{% url 'player_list' %}" class="hover:underline">Players</a>
+    <a href="{% url 'add_player' %}" class="hover:underline">Add Player</a>
+</nav>
+</header>
 
     <main class="container mx-auto py-8">
         {% block content %}

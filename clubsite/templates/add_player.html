@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Add Player – Greenfield Sports Club{% endblock %}
+
+{% block content %}
+    <h2 class="text-3xl font-bold mb-6">Add a New Player</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Save Player
+        </button>
+    </form>
+{% endblock %}
