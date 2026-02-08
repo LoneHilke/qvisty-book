@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 class Team(models.Model):
     name = models.CharField(max_length=100)
@@ -21,4 +22,4 @@ class Player(models.Model):
     def save(self, *args, **kwargs):
             if not self.slug:
                 self.slug = slugify(f"{self.first_name}-{self.last_name}")
-            super().save(*args, **kwargs)  
+            super(Player, self).save(*args, **kwargs)  

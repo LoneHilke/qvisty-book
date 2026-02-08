@@ -6,20 +6,27 @@
 <link href="https://cdn.jsdelivr.net/npm/flowbite@1.7.0/dist/flowbite.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 text-gray-900">
-<header class="bg-blue-800 text-white p-4"><h1 class="text-xl font-bold"><a href="/" class="hover:underline">Greenfield Sports Club</a></h1>
-<nav class="mt-4">
-    <a href="/" class="mr-4 hover:underline">Home</a>
-    <a href="{% url 'player_list' %}" class="hover:underline">Players</a>
-    <a href="{% url 'add_player' %}" class="hover:underline">Add Player</a>
-</nav>
+<header class="bg-blue-800 text-white">
+    <nav class="container mx-auto flex items-center justify-between p-4">
+        <div class="text-lg font-bold">
+            <a href="/" class="hover:underline">Greenfield Sports Club</a>
+        </div>
+        <div class="space-x-4">
+            <a href="{% url 'player_list' %}" class="{% if active_page == 'players' %}underline font-bold{% else %}hover:underline{% endif %}">
+    Players</a>
+            <a href="{% url 'add_player' %}" class="hover:underline">Add Player</a>
+        </div>
+    </nav>
 </header>
+
 
     <main class="container mx-auto py-8">
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer class="bg-gray-200 text-center text-sm p-4 mt-8">&copy; Greenfield Sports Club. All rights reserved.
-    </footer>
+    <footer class="bg-gray-200 text-center text-sm p-4 mt-8">
+    &copy; {{ year }} Greenfield Sports Club. All rights reserved.
+</footer>
 </body>
 </html>
