@@ -12,6 +12,7 @@
             <a href="/" class="hover:underline">Greenfield Sports Club</a>
         </div>
         <div class="space-x-4">
+            <a href="{% url 'tournament_home' %}" class="hover:underline">Tournaments</a>
             <a href="{% url 'player_list' %}" class="{% if active_page == 'players' %}underline font-bold{% else %}hover:underline{% endif %}">
     Players</a>
             <a href="{% url 'add_player' %}" class="hover:underline">Add Player</a>
