@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>News – Greenfield Sports Club</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+    <header class="bg-blue-800 text-white p-4">
+        <h1 class="text-2xl">Greenfield Sports Club – News & Updates</h1>
+        
+    </header>
+<p class="mb-4">
+    <a href="{% url 'add_article' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Add a New Article
+    </a>
+</p>
+<form method="get" class="mb-6">
+    <input type="text" name="q" placeholder="Search articles..." class="border px-2 py-1 rounded">
+    <button type="submit" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Search</button>
+</form>
+<div class="mb-6">
+    <span class="mr-2">Sort by:</span>
+    <a href="?sort=published" class="text-blue-600 hover:underline">Published Date</a> |
+    <a href="?sort=title" class="text-blue-600 hover:underline">Title</a>
+</div>
+    <main class="container mx-auto mt-8">
+        <h2 class="text-3xl font-bold mb-6">Latest News</h2>
+        
+
+        {% if articles %}
+            <ul class="space-y-4">
+                {% for article in articles %}
+                    <li class="p-4 {% cycle 'bg-white' 'bg-gray-50' %} rounded shadow">
+                        {% if article.thumbnail %}
+                        <img src="{{ article.thumbnail.url }}" alt="Thumbnail for {{ article.title }}" class="w-32 h-32 object-cover rounded">
+                        {% endif %}
+                        <div>
+                        <h3 class="text-2xl font-semibold text-blue-800">{{ article.title }}</h3>
+                        <p class="text-sm text-gray-500 mb-2">Published on {{ article.published_at|date:"F j, Y, H:i" }}</p>
+                        <p class="text-gray-700">
+                            {% if article.summary %}
+                               <p class="text-gray-700 italic">
+                                    {{ article.summary }}
+                                </p>
+                            {% else %}
+                                {{ article.content|truncatewords:30 }}
+                            {% endif %}
+                        </p>
+                        <h3 class="text-2xl font-semibold text-blue-800">
+                            
+                        <a href="{% url 'article_detail' pk=article.pk %}" class="hover:underline">
+                        {{ article.title }}
+                         </a>
+                        </h3>
+                    </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-gray-500">No articles yet. Check back soon!</p>
+        {% endif %}
+        {% if is_paginated %}
+    <div class="mt-8 flex justify-center space-x-4">
+        {% if page_obj.has_previous %}
+            <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ page_obj.previous_page_number }}">
+            Previous
+            <a>
+        {% endif %}
+
+        <span class="px-4 py-2 text-gray-700">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                Next
+            </a>
+        {% endif %}
+    </div>
+{% endif %}
+    </main>
+    {% block content %}
+    {% endblock content %}
+</body>
+</html>
