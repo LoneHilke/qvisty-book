@@ -8,7 +8,15 @@
 <body class="bg-gray-100 text-gray-800">
     <header class="bg-blue-800 text-white p-4">
         <h1 class="text-2xl">Greenfield Sports Club – News & Updates</h1>
-        
+        <div class="space-x-4">
+            <a href="/" class="hover:underline">Home</a>
+            <a href="/club/" class="hover:underline">Teams</a>
+            <a href="/tournament/" class="hover:underline">Tournaments</a>
+            <a href="/news/" class="hover:underline">News</a>
+            <a href="{% url 'player_list' %}" class="{% if active_page == 'players' %}underline font-bold{% else %}hover:underline{% endif %}">
+    Players</a>
+            <a href="{% url 'add_player' %}" class="hover:underline">Add Player</a>
+        </div>
     </header>
 <p class="mb-4">
     <a href="{% url 'add_article' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Tournaments - Greenfield Sports Club{% endblock %}
+
+{% block content %}
+    <h2 class="text-3xl font-bold mb-6">Tournament Planner</h2>
+    <p>Welcome to the tournament section of Greenfield Sports Club.</p>
+
+    <p class="mt-4">
+    <a href="{% url 'tournament_list' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        View Tournaments
+    </a>
+    <a href="{% url 'add_match' %}" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Add Match</a>
+</p>
+{% endblock %}

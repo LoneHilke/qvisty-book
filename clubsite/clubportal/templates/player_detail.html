@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ player.first_name }} {{ player.last_name }} – Greenfield Sports Club
+{% endblock %}
+
+{% block content %}
+    <h2 class="text-3xl font-bold mb-4">{{ player.first_name }} {{ player.last_name }}</h2>
+    <p>Position: {{ player.position|default:"Unknown" }}</p>
+    <p>Number: {{ player.number|default:"N/A" }}</p>
+    <p>Team: {{ player.team.name }}</p>
+
+    <a href="{% url 'player_list' %}" class="text-blue-600 hover:underline mt-4 inline-block">Back to player list</a>
+{% endblock %}

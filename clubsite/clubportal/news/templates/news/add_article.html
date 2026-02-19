@@ -1,0 +1,25 @@
+{% extends "news/home.html" %}
+
+{% block content %}
+    <h2 class="text-3xl font-bold mb-6">Add a New Article</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="p-4 mb-4 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Publish Article
+        </button>
+    </form>
+
+    <p class="mt-6">
+        <a href="{% url 'news_home' %}" class="text-blue-600 hover:underline">Back to News List</a>
+    </p>
+{% endblock %}
