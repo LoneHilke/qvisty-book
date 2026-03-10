@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="text-4xl font-bold mb-8">Welcome to Greenfield Sports Club</h1>
+
+    <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Latest News <img src = \media\images\fodbold.jpg></h2>
+        <ul class="space-y-4">
+            {% for article in latest_articles %}
+                <li>
+                    <a href="{% url 'article_detail' pk=article.pk %}" class="text-blue-700 hover:underline">
+                        {{ article.title }}
+                    </a>
+                    <p class="text-gray-600 text-sm">
+                        Published on {{ article.published_at|date:"F j, Y" }}
+                    </p>
+                </li>
+            {% empty %}
+                <p>No news yet. Stay tuned!</p>
+            {% endfor %}
+        </ul>
+        <p class="mt-4">
+            <a href="/news/" class="text-blue-600 hover:underline">See all news</a>
+        </p>
+    </section>
+
+    <section class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4">Our Teams</h2>
+        <ul class="space-y-2">
+            {% for team in teams %}
+                <li>{{ team.name }}</li>
+            {% empty %}
+                <p>No teams available yet.</p>
+            {% endfor %}
+        </ul>
+        <p class="mt-4">
+            <a href="/club/" class="text-blue-600 hover:underline">See all teams</a>
+        </p>
+    </section>
+
+    <section>
+        <h2 class="text-2xl font-semibold mb-4">Upcoming Matches</h2>
+        <ul class="space-y-2">
+            {% for match in upcoming_matches %}
+                <li>
+                    {{ match.home_team }} vs {{ match.away_team }} – {{ match.date|date:"F j, Y, H:i" }}
+                </li>
+            {% empty %}
+                <p>No upcoming matches scheduled.</p>
+            {% endfor %}
+        </ul>
+        <p class="mt-4">
+            <a href="/tournament/" class="text-blue-600 hover:underline">See all tournaments</a>
+        </p>
+    </section>
+{% endblock %}

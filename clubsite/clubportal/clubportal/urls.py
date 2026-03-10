@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from clubportal import views as portal_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("club.urls")),
+    path("", portal_views.home, name="portal_home"),
+    path("club/", include("club.urls")),
     path("tournament/", include("tournament.urls")),
     path("news/", include("news.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
